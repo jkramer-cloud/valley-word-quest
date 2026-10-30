@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111a38" />
+  <meta name="description" content="A daily word guessing adventure for grades 3–12, with seasonal themes, streaks, a calendar and one shared puzzle each day." />
+  <title>Valley Word Quest · Daily Dash</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="season-autumn">
+  <div class="ambient" id="ambient" aria-hidden="true"></div>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#main" aria-label="Valley Word Quest home"><span class="brand-icon" aria-hidden="true">✦</span><span><strong>VALLEY<span class="brand-second">WORD QUEST</span></strong><small>DAILY DASH · ONE WORD. ONE DAY.</small></span></a>
+      <div class="header-right">
+        <div class="edition-chip"><span id="theme-icon">🍁</span><span id="theme-chip">AUTUMN ADVENTURE</span></div>
+        <button class="icon-button" id="sound-toggle" type="button" aria-label="Enable sound" title="Toggle sound">♪̸</button>
+        <button class="icon-button" id="settings-button" type="button" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main id="main" class="layout">
+      <aside class="left-rail" aria-label="Daily challenge and player statistics">
+        <section class="panel intro-panel">
+          <div class="eyebrow">✧ TODAY'S QUEST</div>
+          <div class="daily-date" id="today-display">Friday, October 30</div>
+          <div class="hero-emblem" aria-hidden="true"><div class="emblem-orbit orbit-one"></div><div class="emblem-orbit orbit-two"></div><span id="hero-icon">🍂</span><span class="mini-star a">✧</span><span class="mini-star b">✦</span></div>
+          <div class="quest-tag" id="theme-name">The Falling Leaves Festival</div>
+          <h2 id="quest-title">A new word adventure awaits.</h2>
+          <p id="quest-description">Guess the hidden word in six tries. New words arrive every day!</p>
+          <div class="date-progress"><span class="small-muted">NEXT PUZZLE IN</span><strong id="countdown" class="digital-time">00:00:00</strong></div>
+        </section>
+        <section class="panel stats-panel">
+          <div class="panel-header"><h2>YOUR ADVENTURE</h2><span class="tiny-tag" id="stats-grade-label">GRADE 5</span></div>
+          <div class="stats-grid">
+            <div class="stat"><strong id="stat-streak">0</strong><span>🔥 Streak</span></div>
+            <div class="stat"><strong id="stat-best">0</strong><span>🏅 Best streak</span></div>
+            <div class="stat"><strong id="stat-wins">0</strong><span>🏆 Wins</span></div>
+            <div class="stat"><strong id="stat-fastest">—</strong><span>⚡ Best time</span></div>
+          </div>
+          <div class="quest-meter"><div class="quest-meter-head"><span>Win rate</span><strong id="win-rate">0%</strong></div><div class="meter-track"><div id="win-rate-bar"></div></div></div>
+        </section>
+        <section class="panel helper-panel"><div class="helper-icon">💡</div><div><strong>HOW TO PLAY</strong><p>Green = right letter, right spot.<br/>Gold = right letter, new spot.<br/>Gray = not in the word.</p><button id="help-button" class="text-button" type="button">See an example →</button></div></section>
+      </aside>
+
+      <section class="play-panel" aria-label="Today's word game">
+        <div class="play-topline">
+          <div><div class="eyebrow">✦ THE DAILY CHALLENGE</div><h1>Guess the secret word<span class="title-period">.</span></h1><p class="play-subtitle" id="puzzle-subtitle">A fresh mystery for every grade, every day.</p></div>
+          <div class="grade-select-wrap"><label for="grade-select">YOUR GRADE</label><select id="grade-select" aria-label="Select grade"><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5" selected>Grade 5</option><option value="6">Grade 6</option><option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option><option value="10">Grade 10</option><option value="11">Grade 11</option><option value="12">Grade 12</option></select></div>
+        </div>
+        <div class="game-divider"><span></span><span class="four-star" aria-hidden="true">✦ ✧ ✦</span><span></span></div>
+        <div class="game-meta"><span class="meta-pill" id="word-length-label">5-LETTER WORD</span><span class="meta-pill outlined" id="attempt-label">0 / 6 GUESSES</span><span class="timer-pill" id="timer-display">⏱ 00:00</span></div>
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <div class="board-wrap"><div id="board" class="board" aria-label="Word guessing board" role="group"></div></div>
+        <div class="keyboard" id="keyboard" aria-label="On-screen keyboard"></div>
+        <p class="board-instructions" id="board-instructions">Type your guess, then press ENTER. Your timer starts when you type.</p>
+        <div class="game-actions"><button id="share-button" class="secondary-button" type="button" hidden>▦ Share result</button><button id="results-button" class="secondary-button" type="button" hidden>★ View results</button><button id="hint-button" class="secondary-button" type="button">✧ Need a nudge?</button></div>
+        <div class="footer-note"><span class="online-dot"></span> No login needed · Saves in this browser · A different daily puzzle for each grade</div>
+      </section>
+
+      <aside class="right-rail" aria-label="Calendar and achievements">
+        <section class="panel calendar-panel">
+          <div class="panel-header"><h2>QUEST CALENDAR</h2><span class="calendar-spark" aria-hidden="true">✦</span></div>
+          <div class="calendar-nav"><button id="cal-prev" type="button" class="cal-arrow" aria-label="Previous month">‹</button><strong id="cal-month">October 2026</strong><button id="cal-next" class="cal-arrow" type="button" aria-label="Next month">›</button></div>
+          <div id="calendar" class="calendar" aria-label="Calendar of daily puzzles"></div>
+          <div class="calendar-legend"><span><i class="legend-win"></i> Won</span><span><i class="legend-miss"></i> Tried</span><span><i class="legend-today"></i> Today</span></div>
+          <p id="calendar-detail" class="calendar-detail">Select a past date to see your results.</p>
+        </section>
+        <section class="panel trophy-panel"><div class="panel-header"><h2>ACHIEVEMENT SHELF</h2><span>🏆</span></div><div class="badge-shelf" id="achievement-shelf"></div><p class="shelf-note">Win puzzles to earn new badges for this grade!</p></section>
+        <section class="panel classroom-panel"><div class="tiny-trophy">✦</div><div><strong>KEEP YOUR STREAK ALIVE</strong><p>One puzzle per grade each day. Come back tomorrow for a new word!</p></div></section>
+      </aside>
+    </main>
+    <footer class="site-footer"><span>VALLEY WORD QUEST · MADE FOR CURIOUS MINDS</span><span>Daily puzzles follow your device's local calendar date.</span></footer>
+  </div>
+
+  <dialog id="celebration" class="dialog celebration" aria-labelledby="result-heading"><div id="confetti" class="confetti-container" aria-hidden="true"></div><div class="modal-content"><button id="close-result" class="close-dialog" aria-label="Close results" type="button">✕</button><div id="result-icon" class="result-icon">🏆</div><div class="eyebrow" id="result-eyebrow">DAILY WORD CONQUERED</div><h2 id="result-heading">INCREDIBLE WORK!</h2><p id="result-message">You solved today's challenge!</p><div class="result-word" id="result-word">WORD</div><div class="result-metrics"><div><strong id="result-guesses">3 / 6</strong><span>GUESSES</span></div><div><strong id="result-time">00:43</strong><span>TIME</span></div><div><strong id="result-streak">1</strong><span>STREAK</span></div></div><div class="reflection-prompt" id="result-reflection">Challenge yourself: use today's word in a sentence.</div><button class="primary-button" type="button" id="share-result">▦ Copy & share results</button><button class="secondary-button" type="button" id="finish-result">Back to my quest</button></div></dialog>
+  <dialog id="help-dialog" class="dialog simple-dialog"><div class="modal-content"><button class="close-dialog" data-close-dialog aria-label="Close" type="button">✕</button><div class="eyebrow">YOUR QUEST GUIDE</div><h2>How to play</h2><p>Guess the mystery word using the on-screen keyboard or your real keyboard. The squares tell you how close you are.</p><div class="example-line"><span class="example-letter correct">B</span><span class="example-letter">R</span><span class="example-letter">A</span><span class="example-letter">V</span><span class="example-letter">E</span><span class="example-caption"><strong>Green</strong> means B is correct and in the right position.</span></div><div class="example-line"><span class="example-letter">S</span><span class="example-letter present">M</span><span class="example-letter">I</span><span class="example-letter">L</span><span class="example-letter">E</span><span class="example-caption"><strong>Gold</strong> means M belongs somewhere else.</span></div><div class="example-line"><span class="example-letter absent">F</span><span class="example-letter">R</span><span class="example-letter">O</span><span class="example-letter">S</span><span class="example-letter">T</span><span class="example-caption"><strong>Gray</strong> means F is not in the word.</span></div><p class="fine-print">Each grade receives one shared puzzle per date. Results and streaks are saved on this device, not in a school account. Changing your device's date can affect daily puzzles.</p><button class="primary-button" type="button" data-close-dialog>Let's play!</button></div></dialog>
+  <dialog id="settings-dialog" class="dialog simple-dialog"><div class="modal-content"><button class="close-dialog" data-close-dialog aria-label="Close" type="button">✕</button><div class="eyebrow">YOUR GAME, YOUR WAY</div><h2>Settings</h2><label class="setting-row"><span>Sound effects <small>Off by default for classrooms</small></span><input id="setting-sound" type="checkbox" /></label><label class="setting-row"><span>Reduce animations <small>For quieter screens</small></span><input id="setting-motion" type="checkbox" /></label><label class="setting-row"><span>High contrast tiles <small>Symbols and stronger borders</small></span><input id="setting-contrast" type="checkbox" /></label><div class="settings-profile"><label for="profile-input">Player nickname (saved only on this device)</label><div class="profile-controls"><input id="profile-input" maxlength="22" placeholder="Player 1" /><button id="profile-save" type="button" class="secondary-button">Switch / create</button></div><p class="fine-print" id="profile-message">Separate nicknames can keep different students' records apart on the same browser. No passwords or online sync.</p></div><button class="danger-button" id="reset-button" type="button">Reset this grade's progress</button></div></dialog>
+  <script src="word-bank.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
